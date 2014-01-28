@@ -1,25 +1,26 @@
 
-This Matlab code includes 
-1- The implementation of two Optimization based algorithms for solving influence maximization technique in social network for the purpose of advertising. These two algorithms are named Optimized Influence Maximization (OIM) and Hierarchcal Influence Maximization (HIM) and are described in detail in following published papers, respectively:
+### This Matlab code includes: 
+	1- The implementation of two Optimization based algorithms for solving influence maximization technique in social network for the purpose of advertising. These two algorithms are named Optimized Influence Maximization (OIM) and Hierarchcal Influence Maximization (HIM) and are described in detail in following published papers, respectively:
 
-	- Mahsa Maghami, Gita Sukthankar, "Hierarchical Influence Maximization for Advertising in Multi-agent Markets," Proceedings of the IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM), pp. 21-27, Niagara Falls, Canada, August 25-28, 2013
-	- Mahsa Maghami, Gita Sukthankar, "Identifying Influential Agents for Advertising in Multi-agent Markets," Proceedings of the Eleventh International Conference on Autonomous Agents and Multiagent System (AAMAS), Volume 2, pp. 687-694, Valencia, Spain, June 4-8, 2012.
+		- Mahsa Maghami, Gita Sukthankar, "Identifying Influential Agents for Advertising in Multi-agent Markets," Proceedings of the Eleventh International Conference on Autonomous Agents and Multiagent System (AAMAS), Volume 2, pp. 687-694, Valencia, Spain, June 4-8, 2012.
 
-2- The simulation of a multi-agent market where buyers (Regular Agents) and available products in the market (Product Agents) are presented as an individual agent with a desire vector. Buyers are connected with each other based on a social network that captured their interactions and products are correlated with each other based on the history of demand of of buyers. 
+		- Mahsa Maghami, Gita Sukthankar, "Hierarchical Influence Maximization for Advertising in Multi-agent Markets," Proceedings of the IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM), pp. 21-27, Niagara Falls, Canada, August 25-28, 2013
 
+	2- The simulation of a multi-agent market where buyers (Regular Agents) and available products in the market (Product Agents) are presented as an individual agent with a desire vector. Buyers are connected with each other based on a social network that captured their interactions. This social network can be a synthetic data genrated by another function or can be a real dataset loaded from a file. Products in the market are correlated with each other based on the history of demand of of buyers. The correlation matrix among the products alos can be synthetic or based on real data that for example Amazon website had been released based on the purchase/demand of its costumers. 
 
-3- A synthetic network generator which creates a directed network for the buyers based on two homophily and link density parameters. This code is implemented by another colleage, Xi Wang, and the code is available also at : 
-
+	3- A synthetic network generator which creates a directed network for the buyers based on two homophily and link density parameters. This code is implemented based on  by another colleage, Xi Wang, and the code is available also at : 
 
 Required toolboxes:
 
-1) matlab_bgl toolbox, available at: 
- 	* This folder contains the toolbox for your convinient.
+1) MatlabBGL toolbox, available at: http://www.mathworks.com/matlabcentral/fileexchange/10922-matlabbgl
+ 	* The version 4 is included in this folder for your convinient.
+ 	We used this toolbox to calculate the shortest-path in the graph in HIM algorithm. Also to calculate the betweenness measurement as a method to compare the results of OIM and HIM with. 
 
-2) cvx toolbox, available at: 
-	* This folder contains version ... of cvx for your convinient.
+2) GLPK software: 
+	* The necessary files are included in this folder for your convinient.
+	We solved the optimization problem as a linear programming problem with GLPK software. 
 
-3)  
+
 
 
 Run the code: 
