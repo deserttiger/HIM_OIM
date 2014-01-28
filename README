@@ -21,8 +21,6 @@ Required toolboxes:
 	We solved the optimization problem as a linear programming problem with GLPK software. 
 
 
+Getting started: 
 
-
-Run the code: 
-
-- Open MAIN_ASONAM.m to start running the whole simulation with 
+- Open MAIN_Journal.m to start running the whole simulation
