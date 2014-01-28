@@ -76,8 +76,9 @@ switch testCaseIndex
         DoLoadNetwork = false;
         
         params{1}.numTotal = params{1}.numAgents + params{1}.numAds;
-        simParams = struct('numItr',60000,'numRun',10,'numNetwork',10,'ResultsIterationFactor',1000,'numRepeatU',50);
+        simParams = struct('numItr',60000,'numRun',1,'numNetwork',1,'ResultsIterationFactor',1000,'numRepeatU',5);
         params{1}.highDegreeTreshold = 200; % if the in+out degree of a node is greater than this this node is ignored as the initial seed of HIM
+        
     case 6 % 1000
         numAds = 10;
         params{1} = struct('neighbourhoodRadius',3,'numInitAgents',2000, ...

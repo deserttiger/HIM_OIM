@@ -5,7 +5,7 @@ addpath(genpath('matlab_bgl'));
 addpath(genpath('pagerank-1.2'));
 
 % initialize the test case
-testCaseIndex = 8;
+testCaseIndex = 5;
 [params,simParams,DoLoadNetwork,numAds,networkFileName,DoProbabilisticU] = initTestCases(testCaseIndex);
 
 DO_OIM = true;
@@ -37,9 +37,8 @@ for iNetwork = 1:simParams.numNetwork
     % Generate matrix parameters based on Net
     matrixParams{1}= GenerateMatrixParameters(params{1},agent{1},Net,graphConnectivity);
     
-    % Generate matrix M
+    % Generate matrix M the correlation matrix among the products
     M = generate_M (params{1}.numAds);
-    % M = eye(params{1}.numAds);
     
     matrixParams{1}.Alpha_agents = sparse(matrixParams{1}.Alpha_agents);
     matrixParams{1}.Eps_agents = sparse(matrixParams{1}.Eps_agents);
@@ -71,7 +70,7 @@ for iNetwork = 1:simParams.numNetwork
     % in a probabilistic fashion (rollet wheel)
     for iUs = 1:simParams.numRepeatU
         %% Benchmarks
-        [U_rnd, U_bet, U_deg, U_noU, U_PageRank] = RunBenchmarks (params{1}, agent{1}, Net, graphConnectivity,DoProbabilisticU);
+        [U_rnd, U_bet, U_deg, U_noU] = RunBenchmarks (params{1}, agent{1}, Net, graphConnectivity,DoProbabilisticU);
         
         %% Build the Methods straucture
         
@@ -81,14 +80,11 @@ for iNetwork = 1:simParams.numNetwork
         
         MethodsStruct(2).Name = 'U_bet';
         MethodsStruct(2).U = U_bet;
-
-        MethodsStruct(3).Name = 'PageRank';
-        MethodsStruct(3).U = U_PageRank;
+      
+        MethodsStruct(3).Name = 'Degree';
+        MethodsStruct(3).U = U_deg;
         
-        MethodsStruct(4).Name = 'Degree';
-        MethodsStruct(4).U = U_deg;
-        
-        numCurretMethods=4;
+        numCurretMethods=3;
         
         if (DO_OIM)
             

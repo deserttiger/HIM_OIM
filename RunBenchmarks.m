@@ -1,4 +1,4 @@
-function [U_rnd, U_bet, U_deg, U_noU, U_PageRank] = RunBenchmarks (params, agent, Net, graphConnectivity,DoProbabilisticU)
+function [U_rnd, U_bet, U_deg, U_noU] = RunBenchmarks (params, agent, Net, graphConnectivity,DoProbabilisticU)
 
 %% Random
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,37 +96,37 @@ end;
 % Calculate PageRank U
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-U_PageRank = zeros(params.numAds, params.numAgents);
-U_PageRankCont = U_PageRank*0;
-p = pagerank(graphConnectivity)  ;
-[sortedPR ,indPR ]= sort(p,'descend');
-%     for ad = 1:params{1}.numAds
-%         selected = indPR(1:params{1}.adBudget);
-%         U_PageRank (ad,selected) = 1;
-%     end;
-if (DoProbabilisticU)
-P_attach_pageRank = p ./ sum(p) ;
-rollet_pageRank = cumsum (P_attach_pageRank);
-for ad = 1:params.numAds
-    l=0;
-    U_PageRankCont(ad,:) = P_attach_pageRank;
-    while (l ~= params.adBudget)
-        tmp = find (rollet_pageRank >= rand);
-        idLink = tmp(1);
-        if  (U_PageRank(ad ,idLink)==0)
-            l = l+1 ;
-            U_PageRank (ad, idLink ) = 1;
-        else
-            continue;
-        end
-        
-    end
-end % FOR ad
-else
-    
-    pagerank_InfNodes = indPR(1:params.adBudget) ;
-    U_PageRank (:, pagerank_InfNodes)= 1;
-end;
+% U_PageRank = zeros(params.numAds, params.numAgents);
+% U_PageRankCont = U_PageRank*0;
+% p = pagerank(graphConnectivity)  ;
+% [sortedPR ,indPR ]= sort(p,'descend');
+% %     for ad = 1:params{1}.numAds
+% %         selected = indPR(1:params{1}.adBudget);
+% %         U_PageRank (ad,selected) = 1;
+% %     end;
+% if (DoProbabilisticU)
+% P_attach_pageRank = p ./ sum(p) ;
+% rollet_pageRank = cumsum (P_attach_pageRank);
+% for ad = 1:params.numAds
+%     l=0;
+%     U_PageRankCont(ad,:) = P_attach_pageRank;
+%     while (l ~= params.adBudget)
+%         tmp = find (rollet_pageRank >= rand);
+%         idLink = tmp(1);
+%         if  (U_PageRank(ad ,idLink)==0)
+%             l = l+1 ;
+%             U_PageRank (ad, idLink ) = 1;
+%         else
+%             continue;
+%         end
+%         
+%     end
+% end % FOR ad
+% else
+%     
+%     pagerank_InfNodes = indPR(1:params.adBudget) ;
+%     U_PageRank (:, pagerank_InfNodes)= 1;
+% end;
 %% No U
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % No U
